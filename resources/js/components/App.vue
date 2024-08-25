@@ -13,4 +13,6 @@
 <script setup>
 import Header from './Header.vue';
 import CardList from './CardList.vue';
+
+
 </script>
