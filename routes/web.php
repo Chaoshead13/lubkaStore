@@ -22,6 +22,14 @@ use App\Http\Controllers\Admin\User\EditController as AdminUserEditController;
 use App\Http\Controllers\Admin\User\UpdateController as AdminUserUpdateController;
 use App\Http\Controllers\Admin\User\DeleteController as AdminUserDeleteController;
 
+use App\Http\Controllers\Admin\Product\IndexController as AdminProductIndexController;
+use App\Http\Controllers\Admin\Product\CreateController as AdminProductCreateController;
+use App\Http\Controllers\Admin\Product\StoreController as AdminProductStoreController;
+use App\Http\Controllers\Admin\Product\ShowController as AdminProductShowController;
+use App\Http\Controllers\Admin\Product\EditController as AdminProductEditController;
+use App\Http\Controllers\Admin\Product\UpdateController as AdminProductUpdateController;
+use App\Http\Controllers\Admin\Product\DeleteController as AdminProductDeleteController;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -54,6 +62,16 @@ route::group(["namespace" => "Admin", "prefix" => "admin"], function () {
         Route::get('/{user}/edit', [AdminUserEditController::class, "__invoke"])->name("admin.users.edit");
         Route::patch('/{user}', [AdminUserUpdateController::class, "__invoke"])->name("admin.users.update");
         Route::delete('/{user}', [AdminUserDeleteController::class, "__invoke"])->name("admin.users.delete");
+    });
+
+    route::group(["namespace" => "Products", "prefix" => "products"], function () {
+        Route::get('/', [AdminProductIndexController::class, "__invoke"])->name("admin.products.index");
+        Route::get('/create', [AdminProductCreateController::class, "__invoke"])->name("admin.products.create");
+        Route::post('/', [AdminProductStoreController::class, "__invoke"])->name("admin.products.store");
+        Route::get('/{product}', [AdminProductShowController::class, "__invoke"])->name("admin.products.show");
+        Route::get('/{product}/edit', [AdminProductEditController::class, "__invoke"])->name("admin.products.edit");
+        Route::patch('/{product}', [AdminProductUpdateController::class, "__invoke"])->name("admin.products.update");
+        Route::delete('/{product}', [AdminProductDeleteController::class, "__invoke"])->name("admin.products.delete");
     });
 
 
